@@ -1,19 +1,17 @@
 ## Routing
 
-⬆️ [Go to main menu](README.md#laravel-tips) ⬅️ [Previous (Views)](views.md) ➡️ [Next (Validation)](validation.md)
-
-- [Route group within a group](#route-group-within-a-group)
-- [Declare a resolveRouteBinding method in your Model](#declare-a-resolveroutebinding-method-in-your-model)
-- [assign withTrashed() to Route::resource() method](#assign-withtrashed-to-routeresource-method)
-- [Skip Input Normalization](#skip-input-normalization)
-- [Wildcard subdomains](#wildcard-subdomains)
-- [What's behind the routes?](#whats-behind-the-routes)
-- [Route Model Binding: You can define a key](#route-model-binding-you-can-define-a-key)
-- [Route Fallback: When no Other Route is Matched](#route-fallback-when-no-other-route-is-matched)
-- [Route Parameters Validation with RegExp](#route-parameters-validation-with-regexp)
-- [Rate Limiting: Global and for Guests/Users](#rate-limiting-global-and-for-guestsusers)
-- [Query string parameters to Routes](#query-string-parameters-to-routes)
-- [Separate Routes by Files](#separate-routes-by-files)
+- [Объявление групп внутри групп](#Объявление-групп-внутри-групп)
+- [Объявление метода resolveRouteBinding в вашей модели](#Объявление-метода-resolveRouteBinding-в-вашей-модели)
+- [assign withTrashed() to Route::resource() method](#Назначить-withTrashed-для-метода-Routeresource)
+- [Пропустить нормализацию ввода](#Пропустить-нормализацию-ввода)
+- [Субдомены с подстановочными знаками](#Поддомены-с-подстановочными-знаками)
+- [Что скрывается за маршрутами?](#Что-скрывается-за-маршрутами)
+- [Привязка модели маршрута: вы можете определить ключ](#Привязка-модели-маршрута-вы-можете-определить-ключ)
+- [Возврат маршрута: если нет другого маршрута](#Возврат-маршрута-если-нет-другого-маршрута)
+- [Проверка параметров маршрута с помощью RegExp](#Проверка-параметров-маршрута-с-помощью-RegExp)
+- [Ограничение количества запросов](#Ограничение-количества-запросов)
+- [Параметры строки запроса для маршрутов](#Параметры-строки-запроса-для-маршрутов)
+- [Отдельные маршруты по файлам](#Отдельные-маршруты-по-файлам)
 - [Translate Resource Verbs](#translate-resource-verbs)
 - [Custom Resource Route Names](#custom-resource-route-names)
 - [Eager load relationship](#eager-load-relationship)
@@ -36,10 +34,9 @@
 - [Exclude middleware from a route](#exclude-middleware-from-a-route)
 - [Controller groups](#controller-groups)
 
-### Route group within a group
+### Объявление групп внутри групп
 
-In Routes, you can create a group within a group, assigning a certain middleware only to some URLs in the "parent" group.
-
+Порой необходимо установить свои правила для роутов, которые находятся внутри группы. Laravel позволяет это реализовать без проблем.
 ```php
 Route::group(['prefix' => 'account', 'as' => 'account.'], function() {
     Route::get('login', [AccountController::class, 'login']);
@@ -50,11 +47,13 @@ Route::group(['prefix' => 'account', 'as' => 'account.'], function() {
 });
 ```
 
-### Declare a resolveRouteBinding method in your Model
+### Объявление метода resolveRouteBinding в вашей модели
 
-Route model binding in Laravel is great, but there are cases where we can't just allow users to easily access resources by ID. We might need to verify their ownership of a resource.
+Привязка модели маршрута в Laravel — это здорово, но бывают случаи, 
+когда мы не можем просто позволить пользователям легко получать доступ к ресурсам по идентификатору. 
+Возможно, нам потребуется подтвердить их право собственности на ресурс.
 
-You can declare a resolveRouteBinding method in your Model and add your custom logic there.
+Вы можете объявить метод resolveRouteBinding в своей модели и добавить туда свою пользовательскую логику.
 
 ```php
 public function resolveRouteBinding($value, $field = null)
@@ -68,36 +67,36 @@ public function resolveRouteBinding($value, $field = null)
 }
 ```
 
-Tip given by [@notdylanv](https://twitter.com/notdylanv/status/1567296232183447552/)
+Совет от [@notdylanv](https://twitter.com/notdylanv/status/1567296232183447552/)
 
-### assign withTrashed() to Route::resource() method
+### Назначить withTrashed() для метода Route::resource()
 
-Before Laravel 9.35 - only for Route::get()
+До Laravel 9.35 - только для Route::get()
 ```php
 Route::get('/users/{user}', function (User $user) {
      return $user->email;
 })->withTrashed();
 ```
 
-Since Laravel 9.35 - also for `Route::resource()`!
+С версии Laravel 9.35 - доступно и для `Route::resource()`
 ```php
 Route::resource('users', UserController::class)
      ->withTrashed();
 ```
 
-Or, even by method
+Или для конкретного метода
 ```php
 Route::resource('users', UserController::class)
      ->withTrashed(['show']);
 ```
 
-### Skip Input Normalization
+### Пропустить нормализацию ввода
 
-Laravel automatically trims all incoming string fields on the request. It's called Input Normalization.
+Laravel автоматически обрезает все входящие строковые поля в запросе. Это называется нормализация ввода.
 
-Sometimes, you might not want this behavior.
+Иногда вам может не хотеться такого поведения.
 
-You can use skipWhen method on the TrimStrings middleware and return true to skip it.
+Вы можете использовать метод skipWhen в посреднике TrimStrings и вернуть true, чтобы пропустить его.
 
 ```php
 public function boot()
@@ -108,11 +107,11 @@ public function boot()
 }
 ```
 
-Tip given by [@Laratips1](https://twitter.com/Laratips1/status/1580210517372596224)
+Совет от [@Laratips1](https://twitter.com/Laratips1/status/1580210517372596224)
 
-### Wildcard subdomains
+### Поддомены с подстановочными знаками
 
-You can create route group by dynamic subdomain name, and pass its value to every route.
+Вы можете создать группу маршрутов по имени динамического поддомена и передать его значение каждому маршруту.
 
 ```php
 Route::domain('{username}.workspace.com')->group(function () {
@@ -122,11 +121,11 @@ Route::domain('{username}.workspace.com')->group(function () {
 });
 ```
 
-### What's behind the routes?
+### Что скрывается за маршрутами?
 
-If you use [Laravel UI package](https://github.com/laravel/ui), you likely want to know what routes are actually behind `Auth::routes()`?
+Если вы используете [Laravel UI package](https://github.com/laravel/ui), то вы вероятно желаете узнать какие маршруты скрываются за `Auth::routes()`?
 
-You can check the file `/vendor/laravel/ui/src/AuthRouteMethods.php`.
+Откройте файл `/vendor/laravel/ui/src/AuthRouteMethods.php`.
 
 ```php
 public function auth()
@@ -157,30 +156,30 @@ public function auth()
 }
 ```
 
-The default use of that function is simply this:
+Использование этой функции по умолчанию просто так:
 
 ```php
-Auth::routes(); // no parameters
+Auth::routes(); // без параметров
 ```
 
-But you can provide parameters to enable or disable certain routes:
+Но вы можете указать параметры для включения или отключения определенных маршрутов:
 
 ```php
 Auth::routes([
     'login'    => true,
     'logout'   => true,
     'register' => true,
-    'reset'    => true,  // for resetting passwords
-    'confirm'  => false, // for additional password confirmations
-    'verify'   => false, // for email verification
+    'reset'    => true,  // для сброса паролей
+    'confirm'  => false, // для дополнительных подтверждений пароля
+    'verify'   => false, // для проверки электронной почты
 ]);
 ```
 
-Tip is based on [suggestion](https://github.com/LaravelDaily/laravel-tips/pull/57) by [MimisK13](https://github.com/MimisK13)
+Совет взят из [предложения](https://github.com/LaravelDaily/laravel-tips/pull/57) от [MimisK13](https://github.com/MimisK13)
 
-### Route Model Binding: You can define a key
+### Привязка модели маршрута: вы можете определить ключ
 
-You can do Route model binding like `Route::get('api/users/{user}', function (User $user) { … }` - but not only by ID field. If you want `{user}` to be a `username` field, put this in the model:
+Вы можете выполнить привязку модели в маршруте, например, `Route::get('api/users/{user}', function (User $user) { … }` - но не только по полю ID. Если вы хотите использовать `{user}` из названия `username` поля, поместите это в модель:
 
 ```php
 public function getRouteKeyName() {
@@ -188,25 +187,26 @@ public function getRouteKeyName() {
 }
 ```
 
-### Route Fallback: When no Other Route is Matched
+### Возврат маршрута: если нет другого маршрута
 
-If you want to specify additional logic for not-found routes, instead of just throwing default 404 page, you may create a special Route for that, at the very end of your Routes file.
-
+Если вы хотите указать дополнительную логику для ненайденных маршрутов, вместо того, чтобы просто создавать страницу 404 по умолчанию, вы можете создать для этого специальный маршрут в самом конце вашего файла маршрутов.
 ```php
 Route::group(['middleware' => ['auth'], 'prefix' => 'admin', 'as' => 'admin.'], function () {
     Route::get('/home', [HomeController::class, 'index']);
     Route::resource('tasks', [Admin\TasksController::class]);
 });
 
-// Some more routes....
 Route::fallback(function() {
-    return 'Hm, why did you land here somehow?';
+    // код выполнится, если ни один из указанных маршрутов не был найден
 });
 ```
 
-### Route Parameters Validation with RegExp
+### Проверка параметров маршрута с помощью RegExp
 
-We can validate parameters directly in the route, with “where” parameter. A pretty typical case is to prefix your routes by language locale, like `fr/blog` and `en/article/333`. How do we ensure that those two first letters are not used for some other than language?
+Мы можем проверять параметры непосредственно в маршруте с параметром “where”.
+Довольно типичным случаем является префикс ваших маршрутов по языковому стандарту, такие как`fr/blog` или `en/article/333`.
+
+Как мы можем гарантировать, что эти две первые буквы не используются для чего-то другого, кроме языка?
 
 `routes/web.php`:
 
@@ -216,13 +216,13 @@ Route::group([
     'where' => ['locale' => '[a-zA-Z]{2}']
 ], function () {
     Route::get('/', [HomeController::class, 'index']);
-    Route::get('article/{id}', [ArticleController::class, 'show']);;
+    Route::get('article/{id}', [ArticleController::class, 'show']);
 });
 ```
 
-### Rate Limiting: Global and for Guests/Users
+### Ограничение количества запросов
 
-You can limit some URL to be called a maximum of 60 times per minute, with `throttle:60,1`:
+Вы можете ограничить некоторый URL-адрес, который будет вызываться не более 60 раз в минуту, используйте `throttle:60,1`:
 
 ```php
 Route::middleware('auth:api', 'throttle:60,1')->group(function () {
@@ -232,16 +232,15 @@ Route::middleware('auth:api', 'throttle:60,1')->group(function () {
 });
 ```
 
-But also, you can do it separately for public and for logged-in users:
+Но также вы можете сделать это отдельно для публичных и для авторизованных пользователей:
 
 ```php
-// maximum of 10 requests for guests, 60 for authenticated users
+// максимум 10 запросов для гостей, 60 для аутентифицированных пользователей
 Route::middleware('throttle:10|60,1')->group(function () {
     //
 });
 ```
-
-Also, you can have a DB field users.rate_limit and limit the amount for specific user:
+Кроме того, у вас может быть поле БД users.rate_limit, тем самым, можно ввести лимит для конкретного пользователя:
 
 ```php
 Route::middleware('auth:api', 'throttle:rate_limit,1')->group(function () {
@@ -251,23 +250,25 @@ Route::middleware('auth:api', 'throttle:rate_limit,1')->group(function () {
 });
 ```
 
-### Query string parameters to Routes
+### Параметры строки запроса для маршрутов
 
-If you pass additional parameters to the route, in the array, those key / value pairs will automatically be added to the generated URL's query string.
+Если вы передадите дополнительные параметры маршруту в массиве, 
+эти пары ключ / значение будут автоматически добавлены в строку запроса сгенерированного URL-адреса.
 
 ```php
 Route::get('user/{id}/profile', function ($id) {
     //
 })->name('profile');
 
-$url = route('profile', ['id' => 1, 'photos' => 'yes']); // Result: /user/1/profile?photos=yes
+$url = route('profile', ['id' => 1, 'photos' => 'yes']); // Результат: /user/1/profile?photos=yes
 ```
 
-### Separate Routes by Files
+### Отдельные маршруты по файлам
 
-If you have a set of routes related to a certain "section", you may separate them in a special `routes/XXXXX.php` file, and just include it in `routes/web.php`
+Если у вас есть набор маршрутов, относящихся к определенному «разделу», 
+вы можете выделить их в специальный файл `routesXXXXX.php` и просто включить его в `routes/web.php`
 
-Example with `routes/auth.php` in [Laravel Breeze](https://github.com/laravel/breeze/blob/1.x/stubs/routes/web.php) by Taylor Otwell himself:
+Для примера `routes/auth.php` в [Laravel Breeze](https://github.com/laravel/breeze/blob/1.x/stubs/default/routes/web.php) от самого Тейлора Отвела:
 
 ```php
 Route::get('/', function () {
@@ -281,12 +282,12 @@ Route::get('/dashboard', function () {
 require __DIR__.'/auth.php';
 ```
 
-Then, in `routes/auth.php`:
+Где в `routes/auth.php`:
 
 ```php
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-// ... more controllers
+// ... больше контроллер
 
 use Illuminate\Support\Facades\Route;
 
@@ -297,10 +298,11 @@ Route::get('/register', [RegisteredUserController::class, 'create'])
 Route::post('/register', [RegisteredUserController::class, 'store'])
                 ->middleware('guest');
 
-// ... A dozen more routes
+// ... И еще маршруты
 ```
 
-But you should use this `include()` only when that separate route file has the same settings for prefix/middlewares, otherwise it's better to group them in `app/Providers/RouteServiceProvider`:
+Но вы должны использовать этот `include()` только тогда, когда этот отдельный файл маршрута имеет 
+те же настройки для префиксов/посредников, иначе необходимо сгруппировать их в `app/Providers/RouteServiceProvider`:
 
 ```php
 public function boot()
@@ -317,14 +319,16 @@ public function boot()
             ->namespace($this->namespace)
             ->group(base_path('routes/web.php'));
 
-        // ... Your routes file listed next here
+        // ... Ваш файл маршрутов указан где-то тут
     });
 }
 ```
 
 ### Translate Resource Verbs
 
-If you use resource controllers, but want to change URL verbs to non-English for SEO purposes, so instead of `/create` you want Spanish `/crear`, you can configure it by using `Route::resourceVerbs()` method in `App\Providers\RouteServiceProvider`:
+If you use resource controllers, but want to change URL verbs 
+to non-English for SEO purposes, so instead of `/create` you want Spanish `/crear`, 
+you can configure it by using `Route::resourceVerbs()` method in `App\Providers\RouteServiceProvider`:
 
 ```php
 public function boot()
