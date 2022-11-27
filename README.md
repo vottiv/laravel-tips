@@ -9,12 +9,13 @@
 
 Переведено:
 - [Migrations](docs/migrations.md)
-
+- [Routing](docs/routing.md)
+- 
 В процессе:
 - [DB Models and Eloquent](docs/db-models-and-eloquent.md) (94)
 - [Models Relations](docs/models-relations.md) (35)
 - [Views](docs/views.md) (19)
-- [Routing](docs/routing.md) (33)
+
 - [Validation](docs/validation.md) (24)
 - [Collections](docs/collections.md) (9)
 - [Auth](docs/auth.md) (5)
