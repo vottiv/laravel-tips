@@ -11,7 +11,7 @@
 - [Migrations](docs/migrations.md)
 - [Routing](docs/routing.md)
 - 
-В процессе:
+D ghjwtcct^
 - [DB Models and Eloquent](docs/db-models-and-eloquent.md) (94)
 - [Models Relations](docs/models-relations.md) (35)
 - [Views](docs/views.md) (19)

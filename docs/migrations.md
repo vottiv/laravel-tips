@@ -23,7 +23,7 @@
 
 ### Поля миграции с часовыми поясами
 
-Знаете ли, что в миграция доступны не только `timestamps()`, но  и `timestampsTz()`, для часовых поясов?
+Знаете ли, что в миграция доступны не только `timestamps()`, но и `timestampsTz()`, для часовых поясов?
 
 ```php
 Schema::create('employees', function (Blueprint $table) {

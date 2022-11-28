@@ -12,28 +12,27 @@
 - [Ограничение количества запросов](#Ограничение-количества-запросов)
 - [Параметры строки запроса для маршрутов](#Параметры-строки-запроса-для-маршрутов)
 - [Отдельные маршруты по файлам](#Отдельные-маршруты-по-файлам)
-- [Translate Resource Verbs](#translate-resource-verbs)
-- [Custom Resource Route Names](#custom-resource-route-names)
-- [Eager load relationship](#eager-load-relationship)
-- [Localizing Resource URIs](#localizing-resource-uris)
-- [Resource Controllers naming](#resource-controllers-naming)
-- [Easily highlight your navbar menus](#easily-highlight-your-navbar-menus)
-- [Generate absolute path using route() helper](#generate-absolute-path-using-route-helper)
-- [Override the route binding resolver for each of your models](#override-the-route-binding-resolver-for-each-of-your-models)
-- [If you need public URL, but you want them to be secured](#if-you-need-public-url-but-you-want-them-to-be-secured)
-- [Using Gate in middleware method](#using-gate-in-middleware-method)
-- [Simple route with arrow function](#simple-route-with-arrow-function)
-- [Route view](#route-view)
-- [Route directory instead of route file](#route-directory-instead-of-route-file)
-- [Route resources grouping](#route-resources-grouping)
-- [Custom route bindings](#custom-route-bindings)
-- [Two ways to check the route name](#two-ways-to-check-the-route-name)
-- [Route model binding soft-deleted models](#route-model-binding-soft-deleted-models)
-- [Retrieve the URL without query parameters](#retrieve-the-url-without-query-parameters)
-- [Customizing Missing Model Behavior in route model bindings](#customizing-missing-model-behavior-in-route-model-bindings)
-- [Exclude middleware from a route](#exclude-middleware-from-a-route)
-- [Controller groups](#controller-groups)
-
+- [Перевести глаголы ресурса](#Перевести-глаголы-ресурса)
+- [Пользовательские имена маршрутов ресурсовs](#Пользовательские-имена-маршрутов-ресурсов)
+- [Нетерпеливые отношения нагрузки](#Нетерпеливые-отношения-нагрузки)
+- [Именование контроллеров ресурсов](#Именование-контроллеров-ресурсов)
+- [Легко выделяйте меню панели навигации](#Легко-выделяйте-меню-панели-навигации)
+- [Сгенерировать абсолютный путь с помощью помощника route()](#Сгенерировать-абсолютный-путь-с-помощью-помощника-route)
+- [Переопределите преобразователь привязки маршрута для каждой из ваших моделей](#Переопределите-преобразователь-привязки-маршрута-для-каждой-из-ваших-моделей)
+- [Если вам нужен общедоступный URL, но вы хотите, чтобы они были защищены](#Если-вам-нужен-общедоступный-URL-но-вы-хотите-чтобы-они-были-защищены)
+- [Использование Gate в методе промежуточного программного обеспечения](#Использование-Gate-в-методе-промежуточного-программного-обеспечения)
+- [Простой маршрут со стрелочной функцией](#Простой-маршрут-со-стрелочной-функцией)
+- [Отдача представления напрямую в роуте](#Отдача-представления-напрямую-в-роуте)
+- [Каталог маршрута вместо файла маршрута](#Каталог-маршрута-вместо-файла-маршрута)
+- [Группировка ресурсов маршрута](#Группировка-ресурсов-маршрута)
+- [Пользовательские привязки маршрутов](#Пользовательские-привязки-маршрутов)
+- [Два способа проверить имя маршрута](#Два-способа-проверить-имя-маршрута)
+- [Привязка модели маршрута к мягко-удаленным моделям](#Привязка-модели-маршрута-к-мягко-удаленным-моделям)
+- [Получить URL без параметров запроса](#Получить-URL-без-параметров-запроса)
+- [Настройка поведения отсутствующей модели в привязках модели маршрута](#Настройка-поведения-отсутствующей-модели-в-привязках-модели-маршрута)
+- [Исключить посредники из роута](#Исключить-посредники-из-роута)
+- [Группы контроллеров](#Группы-контроллеров)
+___
 ### Объявление групп внутри групп
 
 Порой необходимо установить свои правила для роутов, которые находятся внутри группы. Laravel позволяет это реализовать без проблем.
@@ -46,6 +45,8 @@ Route::group(['prefix' => 'account', 'as' => 'account.'], function() {
     });
 });
 ```
+[Вернуться к списку](#Routing)
+___
 
 ### Объявление метода resolveRouteBinding в вашей модели
 
@@ -69,6 +70,8 @@ public function resolveRouteBinding($value, $field = null)
 
 Совет от [@notdylanv](https://twitter.com/notdylanv/status/1567296232183447552/)
 
+[Вернуться к списку](#Routing)
+___
 ### Назначить withTrashed() для метода Route::resource()
 
 До Laravel 9.35 - только для Route::get()
@@ -90,6 +93,9 @@ Route::resource('users', UserController::class)
      ->withTrashed(['show']);
 ```
 
+[Вернуться к списку](#Routing)
+___
+
 ### Пропустить нормализацию ввода
 
 Laravel автоматически обрезает все входящие строковые поля в запросе. Это называется нормализация ввода.
@@ -109,6 +115,9 @@ public function boot()
 
 Совет от [@Laratips1](https://twitter.com/Laratips1/status/1580210517372596224)
 
+[Вернуться к списку](#Routing)
+___
+
 ### Поддомены с подстановочными знаками
 
 Вы можете создать группу маршрутов по имени динамического поддомена и передать его значение каждому маршруту.
@@ -120,6 +129,9 @@ Route::domain('{username}.workspace.com')->group(function () {
     });
 });
 ```
+
+[Вернуться к списку](#Routing)
+___
 
 ### Что скрывается за маршрутами?
 
@@ -177,6 +189,9 @@ Auth::routes([
 
 Совет взят из [предложения](https://github.com/LaravelDaily/laravel-tips/pull/57) от [MimisK13](https://github.com/MimisK13)
 
+[Вернуться к списку](#Routing)
+___
+
 ### Привязка модели маршрута: вы можете определить ключ
 
 Вы можете выполнить привязку модели в маршруте, например, `Route::get('api/users/{user}', function (User $user) { … }` - но не только по полю ID. Если вы хотите использовать `{user}` из названия `username` поля, поместите это в модель:
@@ -186,6 +201,9 @@ public function getRouteKeyName() {
     return 'username';
 }
 ```
+
+[Вернуться к списку](#Routing)
+___
 
 ### Возврат маршрута: если нет другого маршрута
 
@@ -200,6 +218,9 @@ Route::fallback(function() {
     // код выполнится, если ни один из указанных маршрутов не был найден
 });
 ```
+
+[Вернуться к списку](#Routing)
+___
 
 ### Проверка параметров маршрута с помощью RegExp
 
@@ -219,6 +240,9 @@ Route::group([
     Route::get('article/{id}', [ArticleController::class, 'show']);
 });
 ```
+
+[Вернуться к списку](#Routing)
+___
 
 ### Ограничение количества запросов
 
@@ -250,6 +274,9 @@ Route::middleware('auth:api', 'throttle:rate_limit,1')->group(function () {
 });
 ```
 
+[Вернуться к списку](#Routing)
+___
+
 ### Параметры строки запроса для маршрутов
 
 Если вы передадите дополнительные параметры маршруту в массиве, 
@@ -262,6 +289,9 @@ Route::get('user/{id}/profile', function ($id) {
 
 $url = route('profile', ['id' => 1, 'photos' => 'yes']); // Результат: /user/1/profile?photos=yes
 ```
+
+[Вернуться к списку](#Routing)
+___
 
 ### Отдельные маршруты по файлам
 
@@ -324,11 +354,14 @@ public function boot()
 }
 ```
 
-### Translate Resource Verbs
+[Вернуться к списку](#Routing)
+___
 
-If you use resource controllers, but want to change URL verbs 
-to non-English for SEO purposes, so instead of `/create` you want Spanish `/crear`, 
-you can configure it by using `Route::resourceVerbs()` method in `App\Providers\RouteServiceProvider`:
+### Перевести глаголы ресурса
+
+Если вы используете контроллеры ресурса, но хотите изменить глаголы URL на неанглийские для целей SEO, 
+и желаете вместо `create` использовать испанский `crear`,  то
+ можете настроить его с помощью метода `Route::resourceVerbs()` в `App\Providers\RouteServiceProvider`:
 
 ```php
 public function boot()
@@ -337,27 +370,32 @@ public function boot()
         'create' => 'crear',
         'edit' => 'editar',
     ]);
-
-    // ...
 }
 ```
 
-### Custom Resource Route Names
+[Вернуться к списку](#Routing)
+___
 
-When using Resource Controllers, in `routes/web.php` you can specify `->names()` parameter, so the URL prefix in the browser and the route name prefix you use all over Laravel project may be different.
+### Пользовательские имена маршрутов ресурсов
+
+При использовании контроллеров ресурсов в `routes/web.php` вы можете указать параметр `->names()`, 
+поэтому префикс URL-адреса в браузере и префикс имени маршрута, который вы используете во всем проекте Laravel, могут отличаться.
 
 ```php
 Route::resource('p', ProductController::class)->names('products');
 ```
 
-So this code above will generate URLs like `/p`, `/p/{id}`, `/p/{id}/edit`, etc.
-But you would call them in the code by `route('products.index')`, `route('products.create')`, etc.
+Таким образом, приведенный выше код будет генерировать такие URL-адреса, как `p`, `p{id}`, `p{id}edit` и т.д.
+Но вы должны вызывать их в коде с помощью `route('products.index')`, маршрут('products.create')` и т. д.
 
-### Eager load relationship
+[Вернуться к списку](#Routing)
+___
 
-If you use Route Model Binding and think you can't use Eager Loading for relationships, think again.
+### Нетерпеливые отношения нагрузки
 
-So you use Route Model Binding
+Если вы используете привязку модели маршрута и считаете, что не можете использовать нетерпеливую загрузку для отношений, подумайте еще раз. 
+
+Итак, вы используете привязку модели маршрута
 
 ```php
 public function show(Product $product) {
@@ -365,9 +403,9 @@ public function show(Product $product) {
 }
 ```
 
-But you have a belongsTo relationship, and cannot use $product->with('category') eager loading?
+Но у вас есть отношения belongsTo и вы не можете использовать `product->with('category')` с нетерпеливой загрузкой? 
 
-You actually can! Load the relationship with `->load()`
+Вы действительно можете! Загрузите отношение с помощью `->load()`
 
 ```php
 public function show(Product $product) {
@@ -376,38 +414,27 @@ public function show(Product $product) {
 }
 ```
 
-### Localizing Resource URIs
+[Вернуться к списку](#Routing)
+___
 
-If you use resource controllers, but want to change URL verbs to non-English, so instead of `/create` you want Spanish `/crear`, you can configure it with `Route::resourceVerbs()` method.
+### Именование контроллеров ресурсов
 
-```php
-public function boot()
-{
-    Route::resourceVerbs([
-        'create' => 'crear',
-        'edit' => 'editar',
-    ]);
-    //
-}
-```
-
-### Resource Controllers naming
-
-In Resource Controllers, in `routes/web.php` you can specify `->names()` parameter, so the URL prefix and the route name prefix may be different.
-
-This will generate URLs like `/p`, `/p/{id}`, `/p/{id}/edit` etc. But you would call them:
+В контроллерах ресурсов в `routes/web.php` можно указать параметр `->names()`, поэтому префикс URL и префикс имени маршрута могут отличаться. Это создаст такие URL-адреса, как `p`, `p{id}`, `p{id}edit` и т. д. Но вы бы назвали их:
 
 - route('products.index)
 - route('products.create)
-- etc
+- и т.д.
 
 ```php
 Route::resource('p', \App\Http\Controllers\ProductController::class)->names('products');
 ```
 
-### Easily highlight your navbar menus
+[Вернуться к списку](#Routing)
+___
 
-Use `Route::is('route-name')` to easily highlight your navbar menus
+### Легко выделяйте меню панели навигации
+
+Используйте `Route::is('route-name')`, чтобы легко выделить меню панели навигации.
 
 ```blade
 <ul>
@@ -420,9 +447,12 @@ Use `Route::is('route-name')` to easily highlight your navbar menus
 </ul>
 ```
 
-Tip given by [@anwar_nairi](https://twitter.com/anwar_nairi/status/1443893957507747849)
+Совет от [@anwar_nairi](https://twitter.com/anwar_nairi/status/1443893957507747849)
 
-### Generate absolute path using route() helper
+[Вернуться к списку](#Routing)
+___
+
+### Сгенерировать абсолютный путь с помощью помощника route()
 
 ```php
 route('page.show', $page->id);
@@ -432,11 +462,16 @@ route('page.show', $page->id, false);
 // /pages/1
 ```
 
-Tip given by [@oliverds\_](https://twitter.com/oliverds_/status/1445796035742240770)
+Совет от [@oliverds\_](https://twitter.com/oliverds_/status/1445796035742240770)
 
-### Override the route binding resolver for each of your models
+[Вернуться к списку](#Routing)
+___
 
-You can override the route binding resolver for each of your models. In this example, I have no control over the @ sign in the URL, so using the `resolveRouteBinding` method, I'm able to remove the @ sign and resolve the model.
+### Переопределите преобразователь привязки маршрута для каждой из ваших моделей
+
+Вы можете переопределить преобразователь привязки маршрута для каждой из ваших моделей.
+
+В этом примере у меня нет контроля над знаком @ в URL-адресе, поэтому с помощью метода `resolveRouteBinding` я могу удалить знак @ и разрешить модель.
 
 ```php
 // Route
@@ -454,11 +489,14 @@ public function resolveRouteBinding($value, $field = null)
 }
 ```
 
-Tip given by [@Philo01](https://twitter.com/Philo01/status/1447539300397195269)
+Совет от [@Philo01](https://twitter.com/Philo01/status/1447539300397195269)
 
-### If you need public URL, but you want them to be secured
+[Вернуться к списку](#Routing)
+___
 
-If you need public URL but you want them to be secured, use Laravel signed URL
+### Если вам нужен общедоступный URL, но вы хотите, чтобы они были защищены
+
+Если вам нужен общедоступный URL-адрес, но вы хотите, чтобы он был защищен, используйте подписанный URL-адрес Laravel.
 
 ```php
 class AccountController extends Controller
@@ -468,7 +506,7 @@ class AccountController extends Controller
         $confirmDeleteUrl = URL::signedRoute('confirm-destroy', [
             $user => $request->user()
         ]);
-        // Send link by email...
+        // Отправить ссылку по электронной почте...
     }
 
     public function confirmDestroy(Request $request, User $user)
@@ -477,7 +515,7 @@ class AccountController extends Controller
             abort(403);
         }
 
-        // User confirmed by clicking on the email
+        // Пользователь подтверждается, нажав на письмо
         $user->delete();
 
         return redirect()->route('home');
@@ -485,48 +523,60 @@ class AccountController extends Controller
 }
 ```
 
-Tip given by [@anwar_nairi](https://twitter.com/anwar_nairi/status/1448239591467589633)
+Совет от [@anwar_nairi](https://twitter.com/anwar_nairi/status/1448239591467589633)
 
-### Using Gate in middleware method
+[Вернуться к списку](#Routing)
+___
 
-You can use the gates you specified in `App\Providers\AuthServiceProvider` in middleware method.
+### Использование Gate в методе промежуточного программного обеспечения
 
-To do this, you just need to put inside the `can:` and the names of the necessary gates.
+Вы можете использовать гейты, указанные в `App\Providers\AuthServiceProvider` в методе промежуточного программного обеспечения.
+
+Для этого нужно просто поставить внутрь `can:` и имена нужных гейтов.
 
 ```php
 Route::put('/post/{post}', function (Post $post) {
-    // The current user may update the post...
+    // Текущий пользователь может обновить сообщение...
 })->middleware('can:update,post');
 ```
 
-### Simple route with arrow function
+[Вернуться к списку](#Routing)
+___
 
-You can use php arrow function in routing, without having to use anonymous function.
+### Простой маршрут со стрелочной функцией
 
-To do this, you can use `fn() =>`, it looks easier.
+Вы можете использовать функцию стрелки php в маршрутизации без использования анонимной функции.
+
+Для этого вы можете использовать `fn() =>`, это выглядит проще.
 
 ```php
-// Instead of
+// Вместо
 Route::get('/example', function () {
     return User::all();
 });
 
-// You can
+// Вы можете
 Route::get('/example', fn () => User::all());
 ```
 
-### Route view
+[Вернуться к списку](#Routing)
+___
 
-You can use `Route::view($uri , $bladePage)` to return a view directly, without having to use controller function.
+### Отдача представления напрямую в роуте
+
+Вы можете использовать `Route::view(uri, bladePage)`, чтобы вернуть представление напрямую, без использования функции контроллера.
 
 ```php
 //this will return home.blade.php view
 Route::view('/home', 'home');
 ```
 
-### Route directory instead of route file
+[Вернуться к списку](#Routing)
+___
 
-You can create a _/routes/web/_ directory and only fill _/routes/web.php_ with:
+### Каталог маршрута вместо файла маршрута
+
+Вы можете создать каталог _/routes/web/_ и заполнить _/routes/web.php_ только:
 
 ```php
 foreach(glob(dirname(__FILE__).'/web/*', GLOB_NOSORT) as $route_file){
@@ -534,11 +584,14 @@ foreach(glob(dirname(__FILE__).'/web/*', GLOB_NOSORT) as $route_file){
 }
 ```
 
-Now every file inside _/routes/web/_ act as a web router file and you can organize your routes into different files.
+Теперь каждый файл внутри _/routes/web/_ действует как файл веб-маршрутизатора, и вы можете организовать свои маршруты в разные файлы.
 
-### Route resources grouping
+[Вернуться к списку](#Routing)
+___
 
-If your routes have a lot of resource controllers, you can group them and call one Route::resources() instead of many single Route::resource() statements.
+### Группировка ресурсов маршрута
+
+Если в ваших маршрутах много контроллеров ресурсов, вы можете сгруппировать их и вызвать один Route::resources() вместо множества одиночных операторов Route::resource().
 
 ```php
 Route::resources([
@@ -547,13 +600,16 @@ Route::resources([
 ]);
 ```
 
-### Custom route bindings
+[Вернуться к списку](#Routing)
+___
 
-Did you know you can define custom route bindings in Laravel?
+### Пользовательские привязки маршрутов
 
-In this example, I need to resolve a portfolio by slug. But the slug is not unique, because multiple users can have a portfolio named 'Foo'
+Знаете ли вы, что в Laravel можно определить собственные привязки маршрутов?
 
-So I define how Laravel should resolve them from a route parameter
+В этом примере мне нужно реализовать портфолио с помощью слаг. Но слаг не уникален, потому что несколько пользователей могут иметь портфолио с именем «Foo».
+
+Поэтому я определяю, как Laravel должен разрешать их, из параметра маршрута:
 
 ```php
 class RouteServiceProvider extends ServiceProvider
@@ -575,16 +631,19 @@ class RouteServiceProvider extends ServiceProvider
 ```php
 Route::get('portfolios/{portfolio}', function (Portfolio $portfolio) {
     /*
-     * The $portfolio will be the result of the query defined in the RouteServiceProvider
+     * Портфолио будет результатом запроса, определенного RouteServiceProvider
      */
 })
 ```
 
-Tip given by [@mmartin_joo](https://twitter.com/mmartin_joo/status/1496871240346509312)
+Совет от [@mmartin_joo](https://twitter.com/mmartin_joo/status/1496871240346509312)
 
-### Two ways to check the route name
+[Вернуться к списку](#Routing)
+___
 
-Here are two ways to check the route name in Laravel.
+### Два способа проверить имя маршрута
+
+Вот два способа проверить имя маршрута в Laravel.
 
 ```php
 // #1
@@ -603,9 +662,12 @@ Here are two ways to check the route name in Laravel.
 </a>
 ```
 
-Tip given by [@AndrewSavetchuk](https://twitter.com/AndrewSavetchuk/status/1510197418909999109)
+Совет от [@AndrewSavetchuk](https://twitter.com/AndrewSavetchuk/status/1510197418909999109)
 
-### Route model binding soft-deleted models
+[Вернуться к списку](#Routing)
+___
+
+### Привязка модели маршрута к мягко-удаленным моделям
 
 By default, when using route model binding will not retrieve models that have been soft-deleted.
 You can change that behavior by using `withTrashed` in your route.
@@ -616,27 +678,33 @@ Route::get('/posts/{post}', function (Post $post) {
 })->withTrashed();
 ```
 
-Tip given by [@cosmeescobedo](https://twitter.com/cosmeescobedo/status/1511154599255703553)
+Совет от [@cosmeescobedo](https://twitter.com/cosmeescobedo/status/1511154599255703553)
 
-### Retrieve the URL without query parameters
+[Вернуться к списку](#Routing)
+___
 
-If for some reason, your URL is having query parameters, you can retrieve the URL without query parameters using the `fullUrlWithoutQuery` method of request like so.
+### Получить URL без параметров запроса
+
+Если по какой-то причине ваш URL-адрес имеет параметры запроса, вы можете получить URL-адрес без параметров запроса, используя метод запроса `fullUrlWithoutQuery` следующим образом:
 
 ```php
-// Original URL: https://www.amitmerchant.com?search=laravel&lang=en&sort=desc
+// Исходный URL: https://www.amitmerchant.com?search=laravel&lang=en&sort=desc
 $urlWithQueryString = $request->fullUrlWithoutQuery([
     'lang',
     'sort'
 ]);
 echo $urlWithQueryString;
-// Outputs: https://www.amitmerchant.com?search=laravel
+// Результат: https://www.amitmerchant.com?search=laravel
 ```
 
-Tip given by [@amit_merchant](https://twitter.com/amit_merchant/status/1510867527962066944)
+Совет от [@amit_merchant](https://twitter.com/amit_merchant/status/1510867527962066944)
 
-### Customizing Missing Model Behavior in route model bindings
+[Вернуться к списку](#Routing)
+___
 
-By default, Laravel throws a 404 error when it can't bind the model, but you can change that behavior by passing a closure to the missing method.
+### Настройка поведения отсутствующей модели в привязках модели маршрута
+
+По умолчанию Laravel выдает ошибку 404, когда не может связать модель, но вы можете изменить это поведение, передав замыкание отсутствующему методу.
 
 ```php
 Route::get('/users/{user}', [UsersController::class, 'show'])
@@ -645,30 +713,36 @@ Route::get('/users/{user}', [UsersController::class, 'show'])
     });
 ```
 
-Tip given by [@cosmeescobedo](https://twitter.com/cosmeescobedo/status/1511322007576608769)
+Совет от [@cosmeescobedo](https://twitter.com/cosmeescobedo/status/1511322007576608769)
 
-### Exclude middleware from a route
+[Вернуться к списку](#Routing)
+___
 
-You can exclude middleware at the route level in Laravel using the withoutMiddleware method.
+### Исключить посредники из роута
+
+Вы можете исключить посредника на уровне маршрута в Laravel, используя метод без промежуточного ПО.
 
 ```php
 Route::post('/some/route', SomeController::class)
     ->withoutMiddleware([VerifyCsrfToken::class]);
 ```
 
-Tip given by [@alexjgarrett](https://twitter.com/alexjgarrett/status/1512529798790320129)
+Совет от [@alexjgarrett](https://twitter.com/alexjgarrett/status/1512529798790320129)
 
-### Controller groups
+[Вернуться к списку](#Routing)
+___
 
-Instead of using the controller in each route, consider using a route controller group. Added to Laravel since v8.80
+### Группы контроллеров
+
+Вместо использования контроллера в каждом маршруте рассмотрите возможность использования группы контроллеров маршрута. Добавлено в Laravel начиная с версии 8.80.
 
 ```php
-// Before
+// Было
 Route::get('users', [UserController::class, 'index']);
 Route::post('users', [UserController::class, 'store']);
 Route::get('users/{user}', [UserController::class, 'show']);
 Route::get('users/{user}/ban', [UserController::class, 'ban']);
-// After
+// Стало
 Route::controller(UsersController::class)->group(function () {
     Route::get('users', 'index');
     Route::post('users', 'store');
@@ -677,5 +751,7 @@ Route::controller(UsersController::class)->group(function () {
 });
 ```
 
-Tip given by [@justsanjit](https://twitter.com/justsanjit/status/1514943541612527616)
+Совет от [@justsanjit](https://twitter.com/justsanjit/status/1514943541612527616)
 
+[Вернуться к списку](#Routing)
+___
