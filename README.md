@@ -10,18 +10,17 @@
 Переведено:
 - [Migrations](docs/migrations.md)
 - [Routing](docs/routing.md)
-- 
-D ghjwtcct^
-- [DB Models and Eloquent](docs/db-models-and-eloquent.md) (94)
-- [Models Relations](docs/models-relations.md) (35)
-- [Views](docs/views.md) (19)
 
-- [Validation](docs/validation.md) (24)
-- [Collections](docs/collections.md) (9)
-- [Auth](docs/auth.md) (5)
-- [Mail](docs/mail.md) (7)
-- [Artisan](docs/artisan.md) (7)
-- [Factories](docs/factories.md) (8)
-- [Log and debug](docs/log-and-debug.md) (7)
-- [API](docs/api.md) (8)
-- [Other](docs/other.md) (71)
+В процессе:
+- [DB Models and Eloquent](docs/db-models-and-eloquent.md)
+- [Models Relations](docs/models-relations.md) 
+- [Views](docs/views.md)
+- [Validation](docs/validation.md) 
+- [Collections](docs/collections.md) 
+- [Auth](docs/auth.md)
+- [Mail](docs/mail.md) 
+- [Artisan](docs/artisan.md) 
+- [Factories](docs/factories.md) 
+- [Log and debug](docs/log-and-debug.md)
+- [API](docs/api.md) 
+- [Other](docs/other.md) 

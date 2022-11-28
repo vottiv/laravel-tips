@@ -21,6 +21,9 @@
 
 Они запускаются в алфавитном порядке.
 
+[Вернуться к списку](#Migrations)
+___
+
 ### Поля миграции с часовыми поясами
 
 Знаете ли, что в миграция доступны не только `timestamps()`, но и `timestampsTz()`, для часовых поясов?
@@ -36,6 +39,9 @@ Schema::create('employees', function (Blueprint $table) {
 
 Также есть такие типы для колонок `dateTimeTz()`, `timeTz()`, `timestampTz()`, `softDeletesTz()`.
 
+[Вернуться к списку](#Migrations)
+___
+
 ### Типы столбцов миграции базы данных
 
 Существует множество любопытных типов полей для создаваемых миграций, приведу парочку в качестве примеров.
@@ -50,6 +56,9 @@ $table->uuid('id');
 
 Посмотреть все доступные типы можно в [официальной документации](https://laravel.com/docs/master/migrations#creating-columns).
 
+[Вернуться к списку](#Migrations)
+___
+
 ### Значения timestamp по умолчанию
 
 При создании миграции вы можете использовать вместе с `timestamp()` следующие параметры `useCurrent()` и `useCurrentOnUpdate()`, 
@@ -59,6 +68,9 @@ $table->uuid('id');
 $table->timestamp('created_at')->useCurrent();
 $table->timestamp('updated_at')->useCurrentOnUpdate();
 ```
+
+[Вернуться к списку](#Migrations)
+___
 
 ### Статус миграций
 
@@ -73,6 +85,9 @@ Migration name .................................................................
 2023_12_03_000000_create_failed_jobs_table ..................................................... [1] Ran    
 ```
 
+[Вернуться к списку](#Migrations)
+___
+
 ### Написание имени миграции с пробелами
 
 When typing `make:migration` command, you don't necessarily have to use underscore `_` symbol between parts, like `create_transactions_table`. You can put the name into quotes and then use spaces instead of underscores.
@@ -86,6 +101,9 @@ php artisan make:migration "create transactions table"
 ```
 
 Источник: [Steve O on Twitter](https://twitter.com/stephenoldham/status/1353647972991578120)
+
+[Вернуться к списку](#Migrations)
+___
 
 ### Создать столбец после другого столбца
 
@@ -125,6 +143,9 @@ Schema::table('users', function (Blueprint $table) {
     });
 });
 ```
+
+[Вернуться к списку](#Migrations)
+___
 
 ### Создать миграцию для существующей таблицы
 
@@ -172,6 +193,9 @@ class WhateverYouWant extends Migration
 }
 ```
 
+[Вернуться к списку](#Migrations)
+___
+
 ### Вывод SQL перед запуском миграций
 
 При написании команды `migrate --pretend`, вы можете вывести запрос, который впоследствии будет выполняться. 
@@ -182,6 +206,9 @@ php artisan migrate --pretend
 ```
 
 Совет от [@zarpelon](https://github.com/zarpelon)
+
+[Вернуться к списку](#Migrations)
+___
 
 ### Анонимные миграции
 
@@ -216,6 +243,9 @@ return new class extends Migration {
 
 Совет от [@nicksdot](https://twitter.com/nicksdot/status/1432340806275198978)
 
+[Вернуться к списку](#Migrations)
+___
+
 ### Комментарий для столбца
 
 Вы можете добавить «комментарий» о столбце внутри ваших миграций, тем самым предоставите полезную информацию.
@@ -229,6 +259,9 @@ $table->unsignedInteger('interval')
 ```
 
 Совет от [@nicksdot](https://twitter.com/nicksdot/status/1432340806275198978)
+
+[Вернуться к списку](#Migrations)
+___
 
 ### Проверка на существования таблицы или столбца
 
@@ -245,6 +278,9 @@ if (Schema::hasColumn('users', 'email')) {
 ```
 
 Совет от [@dipeshsukhia](https://github.com/dipeshsukhia)
+
+[Вернуться к списку](#Migrations)
+___
 
 ### Проверка на наличие перед добавлением или удалением столбца
 
@@ -276,6 +312,7 @@ return new class extends Migration {
 
 Совет от [@iamharis010](https://twitter.com/iamharis010/status/1510579415163432961)
 
+[Вернуться к списку](#Migrations)
 ___
 
 ### Переименование поля PostgreSQL
@@ -320,3 +357,6 @@ return new class extends Migration {
     }
 }
 ```
+
+[Вернуться к списку](#Migrations)
+___
